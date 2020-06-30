@@ -4,35 +4,30 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-// function UserInfo(props){
-//   return(
-//     <div>
-//       <p>Name: {props.name}</p>
-//       <p>Name: {props.email}</p>
-//     </div>
-//   );
-// }
+class ToggleButton extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {isOn: true};  
+  }
 
-class UserInfo extends React.Component {
+  buttonClick = () => {
+      this.setState(prevState => ({
+        isOn: !prevState.isOn
+      }
+    ));
+  }
+
   render(){
     return(
-      <div>
-        <div>
-          <p>Name: {this.props.name}</p>
-          <p>Email:{this.props.email}</p>
-        </div>
-        <div>
-          Other Information: {this.props}
-        </div>
-      </div>
+      <button className="ToggleButton" onClick = {this.buttonClick}>
+        {this.state.isOn ? "ON" : "OFF"}
+      </button>
     );
   }
 }
 
-const element = <UserInfo name = 'Quang' email = '07quang@gmail.com'/>
-
-ReactDOM.render(
-  element,
+ReactDOM.render(  
+  <ToggleButton />,
   document.getElementById('root')
 );
 
